@@ -1,0 +1,22 @@
+# Create Task 
+POST http://localhost:3000/api/v1/tasks
+Content-Type: application/json
+
+{
+    "taskName": "Eat food",
+    "time": 5,
+    "isGood": true,
+    "isCompleted": false
+}
+
+
+###
+
+GET http://localhost:3000/api/v1/tasks
+
+###
+
+PATCH http://localhost:3000/api/v1/tasks/type/2
+
+### 
+PATCH http://localhost:3000/api/v1/tasks/complete/1
