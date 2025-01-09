@@ -20,3 +20,7 @@ PATCH http://localhost:3000/api/v1/tasks/type/2
 
 ### 
 PATCH http://localhost:3000/api/v1/tasks/complete/1
+
+###
+
+DELETE http://localhost:3000/api/v1/tasks/delete/1

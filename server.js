@@ -23,7 +23,12 @@ app.post("/api/v1/tasks", async (req, res) => {
   taskData.push(newTask);
 
   await fs.writeFile("./data/task.json", JSON.stringify(taskData));
-  res.send("Task Created Successfully");
+  console.log("Task Created Successfully");
+  res.send({
+    status: 200,
+    message: "Task Create Successfully",
+    taskData,
+  });
 });
 
 // Read The task
@@ -45,7 +50,11 @@ app.patch("/api/v1/tasks/type/:id", async (req, res) => {
   console.log(typeof taskToBeUpdated.isGood);
   await fs.writeFile("./data/task.json", JSON.stringify(taskData));
 
-  res.send(taskData);
+  res.send({
+    status: 200,
+    message: "Task Type updated",
+    taskData,
+  });
 });
 
 // Toggle the completed
@@ -58,5 +67,25 @@ app.patch("/api/v1/tasks/complete/:id", async (req, res) => {
 
   await fs.writeFile("./data/task.json", JSON.stringify(taskData));
 
-  res.send(taskData);
+  res.send({
+    status: 200,
+    message: "Task Complete updated",
+    taskData,
+  });
+});
+
+// delete the task
+app.delete("/api/v1/tasks/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const newTaskData = taskData.filter((task) => task.id !== parseInt(id));
+
+  console.log(newTaskData);
+  await fs.writeFile("./data/task.json", JSON.stringify(newTaskData));
+
+  res.send({
+    status: 200,
+    message: "Task Deleted",
+    newTaskData,
+  });
 });
